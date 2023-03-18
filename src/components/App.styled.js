@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 400px;
+  width: 300px;
   padding: 10px 10px;
-  border-radius: px;
+  border-radius: 10px;
 
-  background-color: Khaki;
-  color: DarkSlateGray;
+  background-color: PowderBlue;
+  /* color: DarkSlateGray; */
 `;
