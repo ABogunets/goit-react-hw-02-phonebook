@@ -21,6 +21,7 @@ export const NameInput = styled.input`
   &:focus {
     outline: 2px solid SteelBlue;
   }
+  color: Navy;
 `;
 
 export const NumberLabel = styled.label`
@@ -35,6 +36,7 @@ export const NumberInput = styled.input`
   &:focus {
     outline: 2px solid SteelBlue;
   }
+  color: Navy;
 `;
 
 export const SubmitBtn = styled.button`

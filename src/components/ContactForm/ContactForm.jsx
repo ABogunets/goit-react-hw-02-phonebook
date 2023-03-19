@@ -7,9 +7,9 @@ import {
   NumberLabel,
   NumberInput,
   SubmitBtn,
-} from 'components/Form/Form.styled';
+} from 'components/ContactForm/ContactForm.styled';
 
-export class Form extends Component {
+export class ContactForm extends Component {
   state = {
     name: '',
     number: '',
@@ -25,7 +25,7 @@ export class Form extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onFormData(this.state);
+    this.props.onSubmitFormData(this.state);
     this.reset();
   };
 
@@ -43,6 +43,7 @@ export class Form extends Component {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
+          value={this.state.name}
           id={this.nameInputId}
           onChange={this.handleChange}
         />

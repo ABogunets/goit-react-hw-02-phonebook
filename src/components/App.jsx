@@ -1,20 +1,67 @@
 import React, { Component } from 'react';
-import { Container } from './App.styled';
-import { Form } from 'components/Form/Form';
-import { Contacts } from 'components/Contacts/Contacts';
+import { nanoid } from 'nanoid';
+
+import { Container, Title, ContactsTitle } from './App.styled';
+import { ContactForm } from 'components/ContactForm/ContactForm';
+import { ContactList } from 'components/ContactList/ContactList';
+import { Filter } from 'components/Filter/Filter';
 
 export class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
   };
 
-  formSubmitHandler = data => console.log('data :>> ', data);
+  addContact = ({ name, number }) => {
+    const contact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+
+    this.setState(({ contacts }) => ({
+      contacts: [contact, ...contacts],
+    }));
+  };
+
+  getFilteredContacts = () => {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
+  changeFilter = e => {
+    this.setState({
+      filter: e.currentTarget.value,
+    });
+  };
+
+  deleteContact = contactId => {
+    return this.setState(({ contacts }) => ({
+      contacts: contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
 
   render() {
+    const { filter } = this.state;
+    const filteredContacts = this.getFilteredContacts();
     return (
       <Container>
-        <Form onFormData={this.formSubmitHandler} />
-        <Contacts />
+        <Title>Phonebook</Title>
+        <ContactForm onSubmitFormData={this.addContact} />
+        <Filter value={filter} onChangeFilter={this.changeFilter} />
+        <ContactsTitle>Contacts</ContactsTitle>
+        <ContactList
+          contacts={filteredContacts}
+          onDeleteContact={this.deleteContact}
+        />
       </Container>
     );
   }
