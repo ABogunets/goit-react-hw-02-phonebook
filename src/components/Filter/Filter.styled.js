@@ -9,7 +9,6 @@ export const FilterWrapper = styled.div`
   margin-top: 10px;
 `;
 export const FilterLabel = styled.label`
-  /* outline: 1px solid orange; */
   padding: 5px 5px;
   color: Navy;
 `;

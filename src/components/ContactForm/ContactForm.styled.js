@@ -9,8 +9,6 @@ export const FormWrapper = styled.form`
 `;
 
 export const NameLabel = styled.label`
-  /* outline: 1px solid orange; */
-  /* width: 250px; */
   padding: 5px 5px;
   color: Navy;
 `;
@@ -25,7 +23,6 @@ export const NameInput = styled.input`
 `;
 
 export const NumberLabel = styled.label`
-  /* outline: 1px solid orange; */
   padding: 5px 5px;
   color: Navy;
 `;
@@ -48,4 +45,7 @@ export const SubmitBtn = styled.button`
   border-radius: 5px;
   color: white;
   background-color: SteelBlue;
+  &:active {
+    background-color: DeepSkyBlue;
+  }
 `;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import {
   FilterWrapper,
@@ -18,4 +19,9 @@ export const Filter = ({ value, onChangeFilter }) => {
       />
     </FilterWrapper>
   );
+};
+
+Filter.propTypes = {
+  value: PropTypes.string,
+  onChangeFilter: PropTypes.func,
 };

@@ -6,7 +6,6 @@ export const Container = styled.div`
   border-radius: 10px;
 
   background-color: PowderBlue;
-  /* color: DarkSlateGray; */
 `;
 
 export const Title = styled.h1`

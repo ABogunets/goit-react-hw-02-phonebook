@@ -17,15 +17,35 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = ({ name, number }) => {
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
-    };
+  checkName = name => {
+    const { contacts } = this.state;
+    const normalizedName = name.toLowerCase();
+    const foundName = contacts.find(
+      contact => contact.name.toLowerCase() === normalizedName
+    );
+    if (foundName) {
+      alert(`${name} is already in contacts.`);
+      return true;
+    }
+  };
 
-    this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
+  addContact = ({ name, number }) => {
+    if (!this.checkName(name)) {
+      const contact = {
+        id: nanoid(),
+        name,
+        number,
+      };
+
+      this.setState(({ contacts }) => ({
+        contacts: [contact, ...contacts],
+      }));
+    }
+  };
+
+  deleteContact = contactId => {
+    return this.setState(({ contacts }) => ({
+      contacts: contacts.filter(contact => contact.id !== contactId),
     }));
   };
 
@@ -41,12 +61,6 @@ export class App extends Component {
     this.setState({
       filter: e.currentTarget.value,
     });
-  };
-
-  deleteContact = contactId => {
-    return this.setState(({ contacts }) => ({
-      contacts: contacts.filter(contact => contact.id !== contactId),
-    }));
   };
 
   render() {
